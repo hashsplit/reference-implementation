@@ -11,15 +11,15 @@ import Data.Word
 type RollingHash = [Word8] -> Word32
 
 data Config = Config
-    { splitMin  :: !Word32
-    , splitMax  :: !Word32
+    { splitMin  :: !Int
+    , splitMax  :: !Int
     , hash      :: RollingHash
     , winSize   :: !Int
     , threshold :: !Int
     }
 
 splitIndex :: Config -> [Word8] -> Int
-splitIndex cfg bytes = fromIntegral (go 0 bytes) where
+splitIndex cfg bytes = go 0 bytes where
     go i [] = i
     go i xs
         | i == splitMax cfg = i
