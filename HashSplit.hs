@@ -1,5 +1,6 @@
 module HashSplit
     ( Config(..)
+    , validConfig
     , RollingHash
     , split
     , rrs
@@ -17,6 +18,12 @@ data Config = Config
     , winSize   :: !Int
     , threshold :: !Int
     }
+
+validConfig :: Config -> Bool
+validConfig cfg =
+    splitMax cfg >= splitMin cfg
+    && splitMin cfg >= winSize cfg
+    && winSize cfg > 0
 
 splitIndex :: Config -> [Word8] -> Int
 splitIndex cfg bytes = go 0 bytes where
