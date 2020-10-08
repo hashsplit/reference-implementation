@@ -13,4 +13,7 @@ You probably do not want to actually use this implementation; among
 other things, it is slow, because it omits optimizations that real
 implementations will want to perform. If you are looking for a Haskell
 implementation for production use, see
+
+The implementation itself is in HashSplit.hs
+
 <https://github.com/hashsplit/haskell-hashsplit>.

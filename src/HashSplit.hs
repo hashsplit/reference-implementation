@@ -11,19 +11,18 @@ import Data.Word
 
 type RollingHash = [Word8] -> Word32
 
+winSize :: Int
+winSize = 64
+
 data Config = Config
     { splitMin  :: !Int
     , splitMax  :: !Int
     , hash      :: RollingHash
-    , winSize   :: !Int
     , threshold :: !Int
     }
 
 validConfig :: Config -> Bool
-validConfig cfg =
-    splitMax cfg >= splitMin cfg
-    && splitMin cfg >= winSize cfg
-    && winSize cfg > 0
+validConfig cfg = splitMax cfg >= splitMin cfg
 
 splitIndex :: Config -> [Word8] -> Int
 splitIndex cfg bytes = go 0 bytes where
@@ -31,7 +30,7 @@ splitIndex cfg bytes = go 0 bytes where
     go i xs
         | i == splitMax cfg = i
         | i < splitMin cfg = next
-        | hash cfg (take (winSize cfg) xs) `mod` (2 ^ threshold cfg) == 0 = i
+        | hash cfg (take winSize xs) `mod` (2 ^ threshold cfg) == 0 = i
         | otherwise = next
       where
         next = go (i+1) (drop 1 xs)

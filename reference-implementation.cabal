@@ -1,0 +1,36 @@
+cabal-version:       2.0
+-- Initial package description 'reference-implementation.cabal' generated
+-- by 'cabal init'.  For further documentation, see
+-- http://haskell.org/cabal/users-guide/
+
+name:                hashsplit-reference-implementation
+version:             0.1.0.0
+synopsis:            HashSplit reference implementation
+-- description:
+-- bug-reports:
+-- license:
+license-file:        LICENSE
+author:              Ian Denhardt
+maintainer:          ian@zenhack.net
+-- copyright:
+-- category:
+build-type:          Simple
+extra-source-files:  CHANGELOG.md, README.md
+
+library
+  exposed-modules:     HashSplit
+  build-depends:       base >=4.14 && <5
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+test-suite tests
+  type: exitcode-stdio-1.0
+  build-depends:
+      hashsplit-reference-implementation
+    , base >=4.14 && <5
+    , aeson ^>=1.5.4
+    , bytestring ^>=0.10.0
+    , containers ^>=0.6.4
+    , directory ^>=1.3.6
+  hs-source-dirs: tests
+  main-is: Main.hs
