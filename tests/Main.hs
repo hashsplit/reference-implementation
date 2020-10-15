@@ -85,6 +85,7 @@ parseConfig :: Config -> IO HS.Config
 parseConfig config = do
     hashFn <- case hash config of
         "rrs1" -> pure HS.rrs1
+        "cp32" -> pure HS.cp32
         fnName -> error $ "Unsupported hash function: " ++ fnName
     pure HS.Config
         { HS.splitMin = minSize config
