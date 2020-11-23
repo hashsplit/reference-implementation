@@ -51,6 +51,8 @@ split cfg bytes =
     in
     [prefix] ++ split cfg remainder
 
+-- hash functions:
+
 rrs :: Word32 -> Word32 -> RollingHash
 rrs m c xs = skl
   where
