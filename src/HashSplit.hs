@@ -26,7 +26,9 @@ data Config = Config
     }
 
 validConfig :: Config -> Bool
-validConfig cfg = splitMax cfg >= splitMin cfg
+validConfig cfg =
+    splitMax cfg >= splitMin cfg
+    && splitMin cfg >= winSize
 
 splitIndex :: Config -> [Word8] -> Int
 splitIndex cfg bytes = go 0 bytes where
